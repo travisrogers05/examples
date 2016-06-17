@@ -1,7 +1,0 @@
-#!/bin/sh
-
-DEPLOY_DIR=$JBOSS_HOME/standalone/deployments
-echo "Installing ${WAR_FILE_URL} as a deployment"
-curl -o ${DEPLOY_DIR}/ROOT.war -O ${WAR_FILE_URL}
-
-exit 0
