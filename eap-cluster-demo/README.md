@@ -9,7 +9,7 @@ oc project
 
 #### Create a project containing an EAP based application.  Use the web console or the supplied CLI commands for 1-3.  Use the CLI for 4.
 
-1.  Create a new project (replace __ <project-name> __ with a name you choose)
+1.  Create a new project (replace **project-name** with a name you choose)
 
   ```
   oc new-project <project-name>
@@ -24,7 +24,7 @@ oc project
   CONTEXT_DIR = eap-cluster-demo
   ```
 
-3.  Click on the "Create" button or use this CL command (replace __ <app-name> __ with a name you choose):
+3.  Click on the "Create" button or use this CL command (replace **app-name** with a name you choose):
 
   ```
   oc new-app jboss-eap64-openshift~https://github.com/travisrogers05/examples#master --context-dir=eap-cluster-demo \
@@ -32,7 +32,7 @@ oc project
   --param=APPLICATION_NAME=<app-name>
   ```
 
-4.  Add the following service account and roles. (replace __ <project-name> __ and __ <app-name> __ with a names you choose)
+4.  Add the following service account and roles. (replace **project-name** and **app-name** with a names you choose)
 
   ```
   oc project <project-name>
