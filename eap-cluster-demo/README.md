@@ -1,13 +1,13 @@
-# Example of creating an Openshift container using s2i based on JBoss EAP and a binary (WAR) file
+## Example of creating an Openshift container using s2i based on JBoss EAP and a binary (WAR) file
 
-### Issue these commands from CLI to ensure you are not the system:admin, unless you mean to be.  Also that you are not operating on the default project.
+#### Issue these commands from CLI to ensure you are not the system:admin, unless you mean to be.  Also that you are not operating on the default project.
 ```
 oc login -u <some_user>
 oc whoami
 oc project
 ```
 
-### Create a project containing an EAP based application.  Use the web console or the supplied CLI commands for 1-3.  Use the CLI for 4.
+#### Create a project containing an EAP based application.  Use the web console or the supplied CLI commands for 1-3.  Use the CLI for 4.
 
 1.  Create a new project (replace **<project-name>** with a name you choose)
 
