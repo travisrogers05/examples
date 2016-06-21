@@ -10,23 +10,30 @@ oc project
 ### Create a project containing an EAP based application.  Use the web console or the supplied CLI commands for 1-3.  Use the CLI for 4.
 
 1.  Create a new project (replace **<project-name>** with a name you choose)
+
   ```
   oc new-project <project-name>
   oc project <project-name>
   ```
+
 2.  Add an application to the project.  Use the EAP 6.4 template image.  Provide the following fields for this example app:
+
   ```
   SOURCE_REPOSITORY_URL = https://github.com/travisrogers05/examples
   SOURCE_REPOSITORY_REF = master
   CONTEXT_DIR = eap-cluster-demo
   ```
+
 3.  Click on the "Create" button or use this CL command (replace **<app-name>** with a name you choose):
+
   ```
   oc new-app jboss-eap64-openshift~https://github.com/travisrogers05/examples#master --context-dir=eap-cluster-demo \
   --template=eap64-basic-s2i \
   --param=APPLICATION_NAME=<app-name>
   ```
+
 4.  Add the following service account and roles. (replace **<project-name>** and **<app-name>** with a names you choose)
+
   ```
   oc project <project-name>
   oc create serviceaccount eap-service-account -n $(oc project -q)
