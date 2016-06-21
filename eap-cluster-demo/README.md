@@ -27,8 +27,11 @@ oc project
 3.  Click on the "Create" button or use this CL command (replace **app-name** with a name you choose):
 
   ```
-  oc new-app jboss-eap64-openshift~https://github.com/travisrogers05/examples#master --context-dir=eap-cluster-demo \
+  oc new-app jboss-eap64-openshift \
   --template=eap64-basic-s2i \
+  --param=SOURCE_REPOSITORY_URL=https://github.com/travisrogers05/examples.git \
+  --param=SOURCE_REPOSITORY_REF=master \
+  --param=CONTEXT_DIR=eap-cluster-demo \
   --param=APPLICATION_NAME=<app-name>
   ```
 
