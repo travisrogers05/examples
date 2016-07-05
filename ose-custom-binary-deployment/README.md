@@ -3,7 +3,9 @@
 Deployment file used from EAP cluster testing demo:
 https://access.redhat.com/solutions/219213
 
-Steps to build the EAP container with OpenShift using the basic EAP 6.4 template:
+#### Steps to build the EAP container with OpenShift using the basic EAP 6.4 template:
+
+```
 oc new-app jboss-eap64-openshift \
 --template=eap64-basic-s2i \
 --param=SOURCE_REPOSITORY_URL=https://github.com/travisrogers05/examples.git \
@@ -12,6 +14,7 @@ oc new-app jboss-eap64-openshift \
 --param=APPLICATION_NAME=binary-eap-app
 
 oc env dc/binary-eap-app -e OPENSHIFT_KUBE_PING_NAMESPACE=eap-binary OPENSHIFT_KUBE_PING_LABELS=application=binary-eap-app
+```
 
 
 
