@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<contacts>
+  <contact>
+    <first-name>Dave</first-name>
+    <second-name>Hammerton</second-name>
+    <email>david.hammerton@inmarsat.com</email>
+  </contact>
+  <contact>
+    <first-name>Kevin</first-name>
+    <second-name>Crocker</second-name>
+    <email>kevin.crocker@inmarsat.com</email>
+  </contact>
+  <contact>
+    <first-name>Keith</first-name>
+    <second-name>Ball</second-name>
+    <email>keith.ball@inmarsat.com</email>
+  </contact>
+</contacts>
+    
