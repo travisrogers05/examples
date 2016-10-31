@@ -40,28 +40,6 @@
 		<fabric8.iconRef>camel</fabric8.iconRef>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>nexus-local</id>
-			<name>Inmarsat Nexus Public Group</name>
-			<url>http://ec2-54-171-132-33.eu-west-1.compute.amazonaws.com:8081/content/groups/public/</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus-local</id>
-			<url>http://ec2-54-171-132-33.eu-west-1.compute.amazonaws.com:8081/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -324,18 +302,6 @@
 		</pluginManagement>
 	</build>
 
-	<distributionManagement>
-		<repository>
-			<id>nexus</id>
-			<name>Nexus Internal Releases</name>
-			<url>http://ec2-54-171-132-33.eu-west-1.compute.amazonaws.com:8081/content/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus</id>
-			<name>Nexus Internal Snapshot Releases</name>
-			<url>http://ec2-54-171-132-33.eu-west-1.compute.amazonaws.com:8081/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<!-- Default sample commands: mvn -Pf8-build ... build Docker images and 
 		create OpenShift deployment configs mvn -Pf8-deploy ... f8-build + push to 
