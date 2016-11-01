@@ -48,7 +48,8 @@ public class MyJettyRoute extends RouteBuilder {
                 .process(new Processor() {
                     @Override
                     public void process(Exchange exchange) throws Exception {                   	
-                        exchange.getOut().setHeader(Exchange.HTTP_RESPONSE_CODE, 202);
+                        exchange.getOut().setHeader(Exchange.HTTP_RESPONSE_CODE, 200);
+                        exchange.getOut().setBody("Hello People!!");
                     }
                 });
 
