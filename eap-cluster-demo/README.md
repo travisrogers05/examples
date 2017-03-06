@@ -13,7 +13,6 @@ oc project
 
   ```
   oc new-project <project-name>
-  oc project <project-name>
   ```
 
 2.  Add an application to the project.  Use the EAP 6.4 template image.  Provide the following fields for this example app:
@@ -27,12 +26,9 @@ oc project
 3.  Click on the "Create" button or use this CL command (replace **app-name** with a name you choose):
 
   ```
-  oc new-app jboss-eap64-openshift \
-  --template=eap64-basic-s2i \
-  --param=SOURCE_REPOSITORY_URL=https://github.com/travisrogers05/examples.git \
-  --param=SOURCE_REPOSITORY_REF=master \
-  --param=CONTEXT_DIR=eap-cluster-demo \
-  --param=APPLICATION_NAME=<app-name>
+  oc process eap64-basic-s2i -n openshift \
+  -v APPLICATION_NAME=<app-name>,SOURCE_REPOSITORY_URL=https://github.com/travisrogers05/examples,SOURCE_REPOSITORY_REF=master,CONTEXT_DIR=eap-cluster-demo \
+  | oc create -f -
   ```
 
 4.  Add the following service account and roles. (replace **project-name** and **app-name** with a names you choose)
@@ -44,4 +40,3 @@ oc project
   oc policy add-role-to-user view system:serviceaccount:$(oc project -q):eap-service-account -n $(oc project -q)
   oc env dc/<app-name> -e OPENSHIFT_KUBE_PING_NAMESPACE=<project-name> OPENSHIFT_KUBE_PING_LABELS=application=<app-name>
   ```
-
