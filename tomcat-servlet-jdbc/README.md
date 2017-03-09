@@ -44,5 +44,17 @@ oc project
   | oc create -f -
   ```
 
-to be finished...
+#### To be finished...
+- What are the modifications for this template (jws30-tomcat8-servlet-example-s2i)?
+- SSL assets, secrets and service account(s) needed for Tomcat 8 and MySQL
+
+#### Two approaches to try
+##### Use catalina.properties file to use ENV vars via deploymentconfig that get substituted into context.xml
+- Environment variables needed for datasource parameters and catalina.properties
+- modify configuration/context.xml to have datasource parameters as properties substituted via catalina.properties and environment variables
+
+##### Supply context.xml with application WAR file
+- This would simply include a META-INF/context.xml that includes specific datasource parameters
+
+
 
