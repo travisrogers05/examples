@@ -41,7 +41,7 @@ oc project
 
   ```
   oc process jws30-tomcat8-servlet-example-s2i -n openshift \
-  -v APPLICATION_NAME=jws-app,DB_DATABASE=exampledb,DB_USERNAME=joe,DB_PASSWORD=redhat \
+  -v APPLICATION_NAME=jws-app,DB_DATABASE=exampledb,DB_USERNAME=joe,DB_PASSWORD=redhat,CATALINA_OPTS_APPEND=-DresourceRefName=$DB_JNDI \
   | oc create -f -
   ```
 
@@ -60,7 +60,7 @@ Advantages to this approach
 - This would simply include a META-INF/context.xml that includes specific datasource parameters
 
 
-#### Additions...
+#### Future Additions...
 - SSL assets, secrets and service account(s) needed for Tomcat 8 via SSL
 
 

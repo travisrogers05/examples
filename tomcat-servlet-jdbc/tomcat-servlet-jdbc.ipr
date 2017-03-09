@@ -44,10 +44,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="servlet-jdbc-example" />
         <module name="tomcat-servlet-jdbc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="servlet-jdbc-example" target="1.5" />
       <module name="tomcat-servlet-jdbc" target="1.5" />
     </bytecodeTargetLevel>
   </component>
@@ -72,6 +74,7 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/servlet-jdbc-example.iml" filepath="$PROJECT_DIR$/servlet-jdbc-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/tomcat-servlet-jdbc.iml" filepath="$PROJECT_DIR$/tomcat-servlet-jdbc.iml" />
     </modules>
   </component>
@@ -81,6 +84,9 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
   </component>
   <component name="libraryTable">
     <library name="Maven: javax.servlet:javax.servlet-api:3.1.0">
