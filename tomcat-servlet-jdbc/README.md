@@ -32,32 +32,35 @@ oc project
 3.  Add an application to the project selecting the jws30-tomcat8-servlet-example-s2i template.  Provide the following fields for this example app:
 
   ```
-  SOURCE_REPOSITORY_URL = https://github.com/travisrogers05/examples
-  SOURCE_REPOSITORY_REF = master
-  CONTEXT_DIR = tomcat-servlet-jdbc
-  DB_JNDI=jdbc/testDB
   DB_DATABASE=exampledb
+  DB_USERNAME=joe
+  DB_PASSWORD=redhat
   ```
 
 4.  Click on the "Create" button or use this CLI command (replace **app-name** with a name you choose):
 
   ```
   oc process jws30-tomcat8-servlet-example-s2i -n openshift \
-  -v APPLICATION_NAME=<app-name>,SOURCE_REPOSITORY_URL=https://github.com/travisrogers05/examples,SOURCE_REPOSITORY_REF=master,CONTEXT_DIR=tomcat-servlet-jdbc,DB_JNDI=jdbc/testDB,DB_DATABASE=exampledb \
+  -v APPLICATION_NAME=jws-app,DB_DATABASE=exampledb,DB_USERNAME=joe,DB_PASSWORD=redhat \
   | oc create -f -
   ```
 
-#### To be finished...
-- What are the modifications for this template (jws30-tomcat8-servlet-example-s2i)?
-- SSL assets, secrets and service account(s) needed for Tomcat 8 and MySQL
-
 #### Two approaches to try
-##### Use catalina.properties file to use ENV vars via deploymentconfig that get substituted into context.xml
-- Environment variables needed for datasource parameters and catalina.properties
-- modify configuration/context.xml to have datasource parameters as properties substituted via catalina.properties and environment variables
+##### Use the default mechanisms around the DB_SERVICE_PREFIX_MAPPING environment variable which creates predetermined JNDI settings
+Consider DB_SERVICE_PREFIX_MAPPING=test-mysql=DB
+
+This will create a datasource with java:jboss/datasources/test_mysql name. Additionally all the required settings like password and username will be expected to be provided as env variables with the DB_ prefix, for example DB_USERNAME and DB_PASSWORD.
+
+Advantages to this approach
+- A context.xml file is created dynamically that contains appropriate datasource settings based on environment variable provided via deploymentconfig
+- Multiple datasources can can configured. Ex DB_SERVICE_PREFIX_MAPPING=test-mysql=DB,second-postgresql=SECOND,...
+- Drivers are already provided for MySQL, Postgres and MongoDB
 
 ##### Supply context.xml with application WAR file
 - This would simply include a META-INF/context.xml that includes specific datasource parameters
 
+
+#### Additions...
+- SSL assets, secrets and service account(s) needed for Tomcat 8 via SSL
 
 

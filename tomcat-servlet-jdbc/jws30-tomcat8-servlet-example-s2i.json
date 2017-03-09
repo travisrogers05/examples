@@ -53,16 +53,15 @@
     },
     {
       "displayName": "Database JNDI Name",
-      "description": "Database JNDI name used by application to resolve the datasource, e.g. jboss/datasources/mysqlDS",
+      "description": "Database JNDI name used by application to resolve the datasource, e.g. jboss/datasources/<application-name>_mysql",
       "name": "DB_JNDI",
-      "value": "jboss/datasources/defaultDS",
       "required": false
     },
     {
       "displayName": "Database Name",
       "description": "Database name",
       "name": "DB_DATABASE",
-      "value": "root",
+      "value": "exampledb",
       "required": true
     },
     {

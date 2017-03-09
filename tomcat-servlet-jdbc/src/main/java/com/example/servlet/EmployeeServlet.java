@@ -29,9 +29,9 @@ public class EmployeeServlet extends HttpServlet {
         Context envContext = null;
         try {
             envContext = new InitialContext();
-            DataSource ds = (DataSource)envContext.lookup("java:/comp/env/jdbc/testDB");
-//            Context initContext  = (Context)envContext.lookup("java:/comp/env");
-//            DataSource ds = (DataSource)initContext.lookup("jdbc/testDB");
+            DataSource ds = (DataSource)envContext.lookup("java:/jboss/datasources/test_mysql");
+//            Context initContext  = (Context)envContext.lookup("java:/jboss/datasources/");
+//            DataSource ds = (DataSource)initContext.lookup("test_mysql");
             Connection con = ds.getConnection();
 
             Statement stmt = con.createStatement();
