@@ -46,7 +46,7 @@ oc project
   ```
 
 #### Two approaches to try
-##### Use the default mechanisms around the DB_SERVICE_PREFIX_MAPPING environment variable which creates predetermined JNDI settings
+##### Use the default mechanisms around the DB_SERVICE_PREFIX_MAPPING environment variable which creates predetermined datasources based on environment variables
 Consider DB_SERVICE_PREFIX_MAPPING=test-mysql=DB
 
 This will create a datasource with java:jboss/datasources/test_mysql name. Additionally all the required settings like password and username will be expected to be provided as env variables with the DB_ prefix, for example DB_USERNAME and DB_PASSWORD.
