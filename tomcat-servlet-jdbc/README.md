@@ -1,5 +1,8 @@
 ## Example for dynamically providing datasource parameters to a Tomcat based servlet in Openshift
 
+Credit to The Open Tutorials for this example servlet application.
+http://theopentutorials.com/examples/java-ee/servlet/servlet-jndi-datasource-in-tomcat/
+
 Template source derived from:
 - [jws30-tomcat8-basic-s2i](https://github.com/jboss-openshift/application-templates/blob/master/webserver/jws30-tomcat8-basic-s2i.json)
 - [jws30-tomcat8-mysql-s2i](https://github.com/jboss-openshift/application-templates/blob/master/webserver/jws30-tomcat8-mysql-s2i.json)
