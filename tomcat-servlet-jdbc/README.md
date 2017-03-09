@@ -3,7 +3,7 @@
 Credit to The Open Tutorials for the example servlet application that has been slightly modified:
 - http://theopentutorials.com/examples/java-ee/servlet/servlet-jndi-datasource-in-tomcat/
 
-Template source derived from:
+Template source for jws30-tomcat8-servlet-example-s2i derived from:
 - [jws30-tomcat8-basic-s2i](https://github.com/jboss-openshift/application-templates/blob/master/webserver/jws30-tomcat8-basic-s2i.json)
 - [jws30-tomcat8-mysql-s2i](https://github.com/jboss-openshift/application-templates/blob/master/webserver/jws30-tomcat8-mysql-s2i.json)
 
