@@ -1,0 +1,13 @@
+Need the ability for a running JBoss EAP container to :
+1) Be instrumented to execute byteman when deployed
+2) Support multiple agent options (multiple byteman scripts)
+3) Persistent volume required to provide scripts and possibly byteman jar file
+
+
+Possible solution:
+
+1) Modify EAP deploymentconfig to include byteman volume for byteman collateral
+2) Provide byteman JVM options via JAVA_OPTS_APPEND env var
+3) Add byteman.jar file and byteman scripts to byteman volume
+4) Redeploy the EAP pod
+
