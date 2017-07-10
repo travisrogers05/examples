@@ -59,6 +59,33 @@ oc env dc/eap-byteman-app JAVA_OPTS_APPEND='-javaagent:/byteman/byteman.jar=scri
 oc scale dc/eap-byteman-app --replicas=1
 ```
 
+* Monitor the logs for the running pod
+```
+oc logs -f pod/pod-name-here
+```
+
+* Access the counter application endpoint (http://pods-route/counter) using a browser.  Refresh the page and view the pod logs.
+
+Example pod output:
+```
+21:48:02,200 INFO  [org.jboss.as] (Controller Boot Thread) JBAS015874: JBoss EAP 6.4.14.GA (AS 7.5.14.Final-redhat-2) started in 15453ms - Started 282 of 359 services (132 services are lazy, passive or on-demand)
+21:49:17,115 INFO  [stdout] (http-10.131.0.1:8080-1) *** byteman has Entered ***
+21:49:17,145 INFO  [org.jboss.example.counter.Counter] (http-10.131.0.1:8080-1) ************************
+21:49:17,145 INFO  [org.jboss.example.counter.Counter] (http-10.131.0.1:8080-1) Counter is being created
+21:49:17,145 INFO  [org.jboss.example.counter.Counter] (http-10.131.0.1:8080-1) ************************
+21:49:17,145 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) *****************
+21:49:17,146 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) Counter = 1
+21:49:17,146 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) sessionID = GsIh3W+MhDy1w7tFCEWnXZ4i
+21:49:17,146 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) *****************
+21:49:17,157 INFO  [stdout] (http-10.131.0.1:8080-1) *** byteman has exited ***
+21:50:05,596 INFO  [stdout] (http-10.131.0.1:8080-1) *** byteman has Entered ***
+21:50:05,597 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) *****************
+21:50:05,597 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) Counter = 2
+21:50:05,597 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) sessionID = GsIh3W+MhDy1w7tFCEWnXZ4i
+21:50:05,597 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) *****************
+21:50:05,597 INFO  [stdout] (http-10.131.0.1:8080-1) *** byteman has exited ***
+``` 
+
 
 ### To remove byteman script(s) from a JBoss EAP pod in Openshift:
 
