@@ -99,7 +99,7 @@ oc scale dc/eap-byteman-app --replicas=0
 oc volume  dc/eap-byteman-app --remove --name=byteman
 ```
 
-* Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to remove the byteman settings
+* Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to remove the byteman settings.  In this example, we're removing the environment variable.
 ```
 oc env dc/eap-byteman-app JAVA_OPTS_APPEND-
 ```
