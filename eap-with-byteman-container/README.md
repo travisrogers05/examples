@@ -13,6 +13,7 @@ Possible solution:
 
 
 In this example, I created a JBoss EAP 6.4 pod with the following commands:
+~~~
 oc new-project eap-byteman
 oc create serviceaccount eap-service-account
 oc policy add-role-to-user view system:serviceaccount:$(oc project -q):eap-service-account
@@ -22,7 +23,7 @@ oc new-app eap64-basic-s2i-byteman \
    -p SOURCE_REPOSITORY_URL=https://github.com/travisrogers05/examples.git \
    -p SOURCE_REPOSITORY_REF=master \
    -p CONTEXT_DIR=eap-with-byteman-container
-
+~~~
 
 
 To add byteman script(s) to a JBoss EAP pod in Openshift:
