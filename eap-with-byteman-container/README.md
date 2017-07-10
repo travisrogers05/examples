@@ -1,4 +1,4 @@
-# Example of Including Byteman in JBoss EAP Running in Openshift
+# Including Byteman in a JBoss EAP pod running on Openshift
 
 ## Requirement: The ability for a running JBoss EAP container to
 1) Be instrumented to execute byteman when deployed
