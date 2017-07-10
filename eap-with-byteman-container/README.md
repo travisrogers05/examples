@@ -38,16 +38,15 @@ oc scale dc/eap-byteman-app --replicas=0
 ```
 oc volume dc/eap-byteman-app --add --name=byteman --type=hostPath --path=/byteman --mount-path=/byteman
 ```
-
-* Add the byteman files to this shared directory
-Use whatever utilities that are required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
-
 In this simple example, a volume of type hostPath is being used.  This means a directory on the host running the JBoss EAP pod will be mounted in the container.
 
 **NOTE:** Using a volume type of hostPath may require that certain SELinux permissions be in place in order for the JBoss EAP pod container to be able to mount and access the files in the shared directory.  In this example, a `/byteman` directory is shared on the JBoss EAP pod's host machine.  To avoid "permission denied" messages, it is necessary to execute the following command on the pod host to allow the container to access the files in the shared directory.  Do not try to use `/tmp` on the pod host for the shared directory as this will fail.  This step should not be necessary if you intend to use a network share for the volume mount point.
 ```
 sudo chcon -R -u system_u -r object_r -t svirt_sandbox_file_t -l s0 /byteman/
 ```
+
+* Add the byteman files to this shared directory
+Use whatever utilities that are required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
 
 * Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to include the needed byteman settings
 ```
