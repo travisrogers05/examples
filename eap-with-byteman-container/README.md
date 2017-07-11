@@ -15,9 +15,7 @@
 
 ### Dependencies
 
-* Byteman
-Download the [latest byteman release](http://byteman.jboss.org/downloads.html)
-
+* Download the [latest Byteman release](http://byteman.jboss.org/downloads.html)
 * In this example, a JBoss EAP 6.4 pod was created with the following commands:
 ```
 oc new-project eap-byteman

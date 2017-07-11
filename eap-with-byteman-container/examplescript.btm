@@ -1,0 +1,15 @@
+RULE trace servlet entry
+CLASS org.jboss.example.counter.CounterServlet
+METHOD processRequest
+AT ENTRY
+IF TRUE
+DO traceln("*** byteman has Entered ***")
+ENDRULE
+
+RULE trace servlet exit
+CLASS org.jboss.example.counter.CounterServlet
+METHOD processRequest
+AT EXIT
+IF TRUE
+DO traceln("*** byteman has exited ***")
+ENDRULE
