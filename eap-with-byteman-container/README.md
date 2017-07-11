@@ -13,7 +13,12 @@
 4) Redeploy the EAP pod
 
 
-### In this example, a JBoss EAP 6.4 pod was created with the following commands:
+### Dependencies
+
+#### Byteman
+Download the [latest byteman release](http://byteman.jboss.org/downloads.html)
+
+#### In this example, a JBoss EAP 6.4 pod was created with the following commands:
 ```
 oc new-project eap-byteman
 oc create serviceaccount eap-service-account
@@ -45,7 +50,7 @@ In this simple example, a volume of type hostPath is being used.  This means a d
 sudo chcon -R -u system_u -r object_r -t svirt_sandbox_file_t -l s0 /byteman/
 ```
 
-* Add the byteman files to this shared directory.  Use whatever utilities required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
+* Add the byteman files to this shared directory.  This would include, at the least, the byteman.jar and any byteman scripts needed for desired outcome.  Use whatever utilities required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
 
 * Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to include the needed byteman settings
 ```
