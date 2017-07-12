@@ -51,13 +51,13 @@ In this simple example, a volume of type hostPath is being used.  This means a d
     ~~~
     sudo chcon -R -u system_u -r object_r -t svirt_sandbox_file_t -l s0 /byteman/
     ~~~
-- Set the permissions on the shared `/byteman` directory and all the files to at least 755.
-    ~~~
-    chmod -R 755 /byteman
-    ~~~
 
 #### 3. Add the byteman files to this shared directory.  
 This would include, at the least, the byteman.jar and the included [examplescript.btm](https://github.com/travisrogers05/examples/blob/master/eap-with-byteman-container/examplescript.btm) byteman script.  Use whatever utilities required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
+- Set the permissions on the host's shared `/byteman` directory and all the files to at least 755.
+    ~~~
+    chmod -R 755 /byteman
+    ~~~
 
 #### 4. Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to include the needed byteman settings
 ~~~
