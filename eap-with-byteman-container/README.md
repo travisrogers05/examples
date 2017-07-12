@@ -55,7 +55,7 @@ For this example, we create a `/byteman` directory on the pod's host.  This will
 
 #### 3. Add the byteman files to this shared directory.  
 This would include, at the least, the byteman.jar and the included [examplescript.btm](https://github.com/travisrogers05/examples/blob/master/eap-with-byteman-container/examplescript.btm) byteman script.  Use whatever utilities required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
-- Set the permissions on the host's shared `/byteman` directory and all the files to at least 755.
+- Set the following permissions of the shared `/byteman` directory on the host running the pod.
     ~~~
     chmod -R 755 /byteman
     ~~~
