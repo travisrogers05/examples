@@ -52,6 +52,8 @@ Also, certain SELinux permissions need to be in place in order for the JBoss EAP
 sudo chcon -R -u system_u -r object_r -t svirt_sandbox_file_t -l s0 /byteman/
 ~~~
 
+Set the permissions on the shared `/byteman` directory and all the files to at least 755.
+
 #### 3. Add the byteman files to this shared directory.  
 This would include, at the least, the byteman.jar and the included [examplescript.btm](https://github.com/travisrogers05/examples/blob/master/eap-with-byteman-container/examplescript.btm) byteman script.  Use whatever utilities required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
 
