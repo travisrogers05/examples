@@ -32,43 +32,48 @@ oc new-app eap64-basic-s2i \
 
 ### To add byteman script(s) to a JBoss EAP pod in Openshift:
 
-* Scale down the target JBoss EAP pod
-```
+#### 1. Scale down the target JBoss EAP pod
+~~~
 oc scale dc/eap-byteman-app --replicas=0
-```
+~~~
 
-* Add a volume to the JBoss EAP pod's deploymentconfig that points to a directory containing the byteman files
-```
+#### 2. Add a volume to the JBoss EAP pod's deploymentconfig that points to a directory containing the byteman files
+~~~
 oc volume dc/eap-byteman-app --add --name=byteman --type=hostPath --path=/byteman --mount-path=/byteman
-```
+~~~
+
 In this simple example, a volume of type hostPath is being used.  This means a directory on the host running the JBoss EAP pod will be mounted in the container.  Change the volume type to an appropriate value for your environment.
 
-**NOTE:** Using a volume type of hostPath may require that certain SELinux permissions be in place in order for the JBoss EAP pod container to be able to mount and access the files in the shared directory.  In this example, a `/byteman` directory is shared on the JBoss EAP pod's host machine.  To avoid "permission denied" messages, it is necessary to execute the following command on the pod host to allow the container to access the files in the shared directory.  Do not try to use `/tmp` on the pod host for the shared directory as this will fail.  This step should not be necessary if you intend to use a network share for the volume mount point.
-```
+**NOTE:** Using a volume type of hostPath may require a few changes to your environment to be successful.
+It's necessary to [alter security context contraints to use the hostPath volume plugin](https://docs.openshift.com/container-platform/3.4/admin_guide/manage_scc.html#use-the-hostpath-volume-plugin).
+
+Also, certain SELinux permissions need to be in place in order for the JBoss EAP pod container to be able to mount and access the files in the shared directory.  In this example, a `/byteman` directory is shared on the JBoss EAP pod's host machine.  To avoid "permission denied" messages, it is necessary to execute the following command on the pod host to allow the container to access the files in the shared directory.  Do not try to use `/tmp` on the pod host for the shared directory as this will fail.  This step should not be necessary if you intend to use a network share for the volume mount point.
+~~~
 sudo chcon -R -u system_u -r object_r -t svirt_sandbox_file_t -l s0 /byteman/
-```
+~~~
 
-* Add the byteman files to this shared directory.  This would include, at the least, the byteman.jar and the included [examplescript.btm](https://github.com/travisrogers05/examples/blob/master/eap-with-byteman-container/examplescript.btm) byteman script.  Use whatever utilities required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
+#### 3. Add the byteman files to this shared directory.  
+This would include, at the least, the byteman.jar and the included [examplescript.btm](https://github.com/travisrogers05/examples/blob/master/eap-with-byteman-container/examplescript.btm) byteman script.  Use whatever utilities required to place the byteman related files to a shared directory to be mounted in the JBoss EAP pod container using a volume.
 
-* Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to include the needed byteman settings
-```
+#### 4. Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to include the needed byteman settings
+~~~
 oc env dc/eap-byteman-app JAVA_OPTS_APPEND='-javaagent:/byteman/byteman.jar=script:/byteman/examplescript.btm,sys:/byteman/byteman.jar -Djboss.modules.system.pkgs=org.jboss.byteman,org.jboss.logmanager'
-```
+~~~
 
-* Scale up the target JBoss EAP pod.  The byteman script(s) should be included as part of the container start up.
-```
+#### 5. Scale up the target JBoss EAP pod.  The byteman script(s) should be included as part of the container start up.
+~~~
 oc scale dc/eap-byteman-app --replicas=1
-```
+~~~
 
-* Monitor the logs for the running pod
-```
+#### 6. Monitor the logs for the running pod
+~~~
 oc logs -f pod/pod-name-here
-```
+~~~
 
-* Access the counter application endpoint (http://pods-route/counter) using a browser.  Refresh the page and view the pod logs.
+#### 7. Access the counter application endpoint (http://pods-route/counter) using a browser.  Refresh the page and view the pod logs.
 
 Example pod output:
-```
+~~~
 ...
 21:48:02,200 INFO  [org.jboss.as] (Controller Boot Thread) JBAS015874: JBoss EAP 6.4.14.GA (AS 7.5.14.Final-redhat-2) started in 15453ms - Started 282 of 359 services (132 services are lazy, passive or on-demand)
 21:49:17,115 INFO  [stdout] (http-10.131.0.1:8080-1) *** byteman has Entered ***
@@ -87,30 +92,30 @@ Example pod output:
 21:50:05,597 INFO  [org.jboss.example.counter.CounterServlet] (http-10.131.0.1:8080-1) *****************
 21:50:05,597 INFO  [stdout] (http-10.131.0.1:8080-1) *** byteman has exited ***
 ...
-``` 
+~~~
 
 
 ### To remove byteman script(s) from a JBoss EAP pod in Openshift:
 
-* Scale down the target JBoss EAP pod
-```
+#### 1. Scale down the target JBoss EAP pod
+~~~
 oc scale dc/eap-byteman-app --replicas=0
-```
+~~~
 
-* Remove the byteman volume from the JBoss EAP pod's deploymentconfig
-```
+#### 2. Remove the byteman volume from the JBoss EAP pod's deploymentconfig
+~~~
 oc volume  dc/eap-byteman-app --remove --name=byteman
-```
+~~~
 
-* Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to remove the byteman settings.  In this example, we're removing the environment variable.
-```
+#### 3. Add/edit the JAVA_OPTS_APPEND environment variable for the JBoss EAP pod's deploymentconfig to remove the byteman settings.  In this example, we're removing the environment variable.
+~~~
 oc env dc/eap-byteman-app JAVA_OPTS_APPEND-
-```
+~~~
 
-* Scale up the target JBoss EAP pod.  The byteman script(s) should be removed from the container start up.
-```
+#### 4. Scale up the target JBoss EAP pod.  The byteman script(s) should be removed from the container start up.
+~~~
 oc scale dc/eap-byteman-app --replicas=1
-```
+~~~
 
 
 
