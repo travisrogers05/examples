@@ -125,7 +125,13 @@ if [ -n $CUSTOM_INSTALL_DIRECTORIES ]; then
   done
 fi
 
-sed -i "/Xbootclasspath/s/^/#/" "$JBOSS_HOME/bin/standalone.conf"
+#trogers 20171211
+#sed -i "/Xbootclasspath/s/^/#/" "$JBOSS_HOME/bin/standalone.conf"
+# copy any files from a provided bin source directory
+if [ -d $LOCAL_SOURCE_DIR/bin ]; then
+  echo "Copying bin files from project..."
+  cp -vr $LOCAL_SOURCE_DIR/bin/* $JBOSS_HOME/bin/
+fi
 
 chmod -R g+rwX $HOME
 
