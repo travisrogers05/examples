@@ -39,8 +39,35 @@ oc process openshift//eap70-basic-s2i \
 | oc create -f -
   ```
 
-5.  View the deployed application.  (Your URL may be different based on your environment)
+5.  Verify the application is deployed and able to cluster.
+- Check to see if the pod is deployed
+```
+oc get pods
 
-  ```
-http://
-  ```
+```
+- Review the pod logs
+```
+oc logs pod/pod-name
+
+```
+- The logs should start with an entry similar to this:
+```
+Service account has sufficient permissions to view pods in kubernetes (HTTP 200). Clustering will be available.
+```
+
+6.  Scale the pod up to form a cluster.  (replace **app-name** with a name you choose)
+```
+oc get dc
+oc scale --replicas=2 dc app-name
+```
+
+- After an additional pod is created and deployed, there should be log entries indicating that a new cluster member has joined.
+```
+18:35:03,068 INFO  [org.infinispan.remoting.transport.jgroups.JGroupsTransport] (MSC service thread 1-1) ISPN000094: Received new cluster view for channel server: [clustered-app-2-s2375|0] (1) [clustered-app-2-s2375]
+```
+
+7.  Browse to the application
+- Openshift application URLs typically take the following form:
+```
+http://<pod>-<project>.<openshift-apps-url>/clusteringdemo
+```
