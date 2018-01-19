@@ -1,5 +1,7 @@
 ## Example of creating an Openshift container using s2i based on JBoss EAP and a binary (WAR) file
 
+Demo binary WAR file used in this example is from https://access.redhat.com/solutions/219213.
+
 #### Issue these commands from CLI to ensure you are not the system:admin, unless you mean to be.  Also that you are not operating on the default project.
 ```
 oc login -u <some_user>
