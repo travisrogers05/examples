@@ -63,7 +63,7 @@ oc scale --replicas=2 dc app-name
 
 - After an additional pod is created and deployed, there should be log entries indicating that a new cluster member has joined.
 ```
-18:45:33,735 INFO  [org.infinispan.remoting.transport.jgroups.JGroupsTransport] (MSC service thread 1-1) ISPN000094: Received new cluster view for channel hibernate: [clustered-app-2-s2375|1] (2) [clustered-app-2-s2375, clustered-app-2-6w0jk]
+18:45:33,280 INFO  [org.infinispan.remoting.transport.jgroups.JGroupsTransport] (MSC service thread 1-2) ISPN000094: Received new cluster view for channel web: [clustered-app-2-s2375|1] (2) [clustered-app-2-s2375, clustered-app-2-6w0jk]
 ```
 
 7.  Browse to the application
