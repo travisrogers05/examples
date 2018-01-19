@@ -65,9 +65,3 @@ oc scale --replicas=2 dc app-name
 ```
 18:45:33,280 INFO  [org.infinispan.remoting.transport.jgroups.JGroupsTransport] (MSC service thread 1-2) ISPN000094: Received new cluster view for channel web: [clustered-app-2-s2375|1] (2) [clustered-app-2-s2375, clustered-app-2-6w0jk]
 ```
-
-7.  Browse to the application
-- Openshift application URLs typically take the following form:
-```
-http://<pod>-<project>.<openshift-apps-url>/clusteringdemo
-```
