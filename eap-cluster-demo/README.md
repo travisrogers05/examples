@@ -31,7 +31,7 @@ oc project
   CONTEXT_DIR = eap-cluster-demo
   ```
 
-4.  This example command uses an EAP 7.0 template image.  Click on the "Create" button or use this CL command (replace **app-name** with a name you choose):
+4.  This example command uses an EAP 7.0 template image.  Click on the "Create" button in the web console or use this CL command (replace **app-name** with a name you choose):
 
   ```
 oc process openshift//eap70-basic-s2i \
