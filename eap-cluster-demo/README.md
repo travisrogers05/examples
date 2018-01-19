@@ -23,7 +23,7 @@ oc project
   oc policy add-role-to-user view system:serviceaccount:$(oc project -q):eap-service-account -n $(oc project -q)
   ```
 
-3.  Add an application to the project.  Use the EAP 6.4 template image.  Provide the following fields for this example app:
+3.  Add an application to the project.  Provide the following fields for this example app:
 
   ```
   SOURCE_REPOSITORY_URL = https://github.com/travisrogers05/examples
@@ -31,7 +31,7 @@ oc project
   CONTEXT_DIR = eap-cluster-demo
   ```
 
-4.  Click on the "Create" button or use this CL command (replace **app-name** with a name you choose):
+4.  This example command uses an EAP 7.0 template image.  Click on the "Create" button or use this CL command (replace **app-name** with a name you choose):
 
   ```
 oc process openshift//eap70-basic-s2i \
